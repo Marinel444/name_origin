@@ -32,7 +32,7 @@ class Name(models.Model):
     last_accessed_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('name', 'country')
+        unique_together = ("name", "country")
 
     def __str__(self):
         return f"{self.name} → {self.country.code} ({self.probability})"
