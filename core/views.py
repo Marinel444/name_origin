@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django.db.models import Count
 from django.utils import timezone
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,6 +13,7 @@ from .services import get_nationalize_data, get_country_data
 
 
 class NameLookupView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         name = request.query_params.get("name")
         if not name:
@@ -64,6 +66,7 @@ class NameLookupView(APIView):
 
 
 class PopularNamesView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         country_code = request.query_params.get("country")
         if not country_code:
